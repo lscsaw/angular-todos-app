@@ -1,24 +1,23 @@
 <h1>Todos</h1>
 
-@for (todo of todos(); track todo.id) {
-  <article>
-    <h2>
-      <div>
-        {{ todo.name }} - {{ todo.creator.name }} ({{
-          todo.createdAt | date: "HH:mm:ss dd.MM.YYYY"
-        }})
-      </div>
-      <div>
-        <button (click)="removeTodo(todo.id)">Delete</button>
-      </div>
-    </h2>
-    @if (todo.description) {
-      <div style="border: 1px black solid; padding: 5px">
-        {{ todo.description }}
-      </div>
-    } @else {
-      <span>Keine genau Beschreibung :( </span>
-    }
-  </article>
-  <hr />
+<h2>Offen</h2>
+@for (todo of todoTodos(); track todo.id) {
+  <app-todo
+    [todo]="todo"
+    (removeTodo)="removeTodo(todo.id)"
+    (updateStatus)="updateStatus(todo.id, $event)"
+  />
+} @empty {
+  Keine offenen Todos
+}
+
+<h2 style="margin-top: 15rem">Done</h2>
+@for (todo of doneTodos(); track todo.id) {
+  <app-todo
+    [todo]="todo"
+    (removeTodo)="removeTodo(todo.id)"
+    (updateStatus)="updateStatus(todo.id, $event)"
+  />
+} @empty {
+  Keine erledigten Todos :(
 }

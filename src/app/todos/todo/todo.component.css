@@ -1,0 +1,14 @@
+article {
+  border: 1px solid black;
+  padding: 5px;
+
+  h3 {
+    display: flex;
+    justify-content: space-between;
+
+    .btn-list {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+}
