@@ -32,7 +32,6 @@ import { Todo } from '../../application';
           <span>Keine genau Beschreibung :( </span>
         }
       </article>
-      <hr />
     }
   `,
   styleUrl: './todo.component.css',

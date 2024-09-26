@@ -1,23 +1,31 @@
 <h1>Todos</h1>
 
 <h2>Offen</h2>
-@for (todo of todoTodos(); track todo.id) {
+@for (todo of todoTodos(); track todo.id; let isLast = $last) {
   <app-todo
     [todo]="todo"
     (removeTodo)="removeTodo(todo.id)"
     (updateStatus)="updateStatus(todo.id, $event)"
   />
+
+  @if (!isLast) {
+    <hr />
+  }
 } @empty {
   Keine offenen Todos
 }
 
 <h2 style="margin-top: 15rem">Done</h2>
-@for (todo of doneTodos(); track todo.id) {
+@for (todo of doneTodos(); track todo.id; let isLast = $last) {
   <app-todo
     [todo]="todo"
     (removeTodo)="removeTodo(todo.id)"
     (updateStatus)="updateStatus(todo.id, $event)"
   />
+
+  @if (!isLast) {
+    <hr />
+  }
 } @empty {
-  Keine erledigten Todos :(
+  Keine erledigten Todos :'(
 }
