@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 type Todo = {
@@ -20,7 +20,7 @@ type Todo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodosComponent {
-  todos: Todo[] = [
+  todos = signal<Todo[]>([
     {
       id: 1,
       name: 'Saugen',
@@ -38,5 +38,13 @@ export class TodosComponent {
       },
       createdAt: new Date(),
     },
-  ];
+  ]);
+
+  removeTodo(id: number) {
+    this.todos.update((todos) => {
+      const index = todos.findIndex((it) => it.id === id);
+      todos.splice(index, 1);
+      return [...todos];
+    });
+  }
 }
