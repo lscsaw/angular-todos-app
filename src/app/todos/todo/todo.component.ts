@@ -8,7 +8,11 @@ import { Todo } from '../../application';
   imports: [DatePipe],
   template: `
     @if (todo(); as todo) {
-      <article>
+      <article
+        [class.done]="todo.status === 'DONE'"
+        [class.todo]="todo.status === 'TODO'"
+        [style.font-weight]="todo.status === 'TODO' ? '600' : '500'"
+      >
         <h3>
           <div>
             {{ todo.name }} - {{ todo.creator.name }} ({{

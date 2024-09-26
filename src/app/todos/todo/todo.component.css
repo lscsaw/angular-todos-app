@@ -12,3 +12,11 @@ article {
     }
   }
 }
+
+.todo {
+  background-color: aqua;
+}
+
+.done {
+  background-color: darkolivegreen;
+}
