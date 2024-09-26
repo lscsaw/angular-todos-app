@@ -8,6 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'todos',
-    loadComponent: () => import('./todos/todos.component').then((c) => c.TodosComponent),
+    loadComponent: () =>
+      import('./todos/todos.component').then((c) => c.TodosComponent),
   },
 ];

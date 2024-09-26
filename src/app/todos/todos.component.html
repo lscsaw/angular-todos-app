@@ -1,2 +1,17 @@
 <h1>Todos</h1>
 
+@for (todo of todos; track todo.id) {
+  <article>
+    <h2>
+      {{ todo.name }} - {{ todo.creator.name }} ({{
+        todo.createdAt | date: "HH:mm:ss dd.MM.YYYY"
+      }})
+    </h2>
+    @if (todo.description) {
+      <div style="border: 1px black solid; padding: 5px">
+        {{ todo.description }}
+      </div>
+    }
+  </article>
+  <hr />
+}
