@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 type Todo = {
@@ -17,6 +17,7 @@ type Todo = {
   imports: [DatePipe],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodosComponent {
   todos: Todo[] = [
