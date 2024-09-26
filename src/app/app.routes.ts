@@ -11,4 +11,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./todos/todos.component').then((c) => c.TodosComponent),
   },
+  {
+    path: 'todos/:id',
+    loadComponent: () =>
+      import('./todos/edit-todo/edit-todo.component').then(
+        (c) => c.EditTodoComponent,
+      ),
+  },
 ];

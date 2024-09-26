@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Todo } from '../../application';
+import { RouterLink } from '@angular/router';
 
 @Component({
   template: `
@@ -11,11 +12,11 @@ import { Todo } from '../../application';
         [style.font-weight]="todo.status === 'TODO' ? '600' : '500'"
       >
         <h3>
-          <div>
+          <a [routerLink]="todo.id.toString()">
             {{ todo.name }} - {{ todo.creator.name }} ({{
               todo.createdAt | date: 'HH:mm:ss dd.MM.YYYY'
             }})
-          </div>
+          </a>
           <div class="btn-list">
             @if (todo.status === 'TODO') {
               <button (click)="updateStatus.emit('DONE')">Done</button>
@@ -37,7 +38,7 @@ import { Todo } from '../../application';
   `,
   selector: 'app-todo',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   styleUrl: './todo.component.css',
 })
 export class TodoComponent {

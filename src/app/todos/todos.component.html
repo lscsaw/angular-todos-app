@@ -1,11 +1,9 @@
-<h1>Todos</h1>
-
 <h2>Offen</h2>
 @for (todo of todoTodos(); track todo.id; let isLast = $last) {
   <app-todo
     [todo]="todo"
-    (removeTodo)="removeTodo(todo.id)"
-    (updateStatus)="updateStatus(todo.id, $event)"
+    (removeTodo)="todosService.removeTodo(todo.id)"
+    (updateStatus)="todosService.updateStatus(todo.id, $event)"
   />
 
   @if (!isLast) {
@@ -19,8 +17,8 @@
 @for (todo of doneTodos(); track todo.id; let isLast = $last) {
   <app-todo
     [todo]="todo"
-    (removeTodo)="removeTodo(todo.id)"
-    (updateStatus)="updateStatus(todo.id, $event)"
+    (removeTodo)="todosService.removeTodo(todo.id)"
+    (updateStatus)="todosService.updateStatus(todo.id, $event)"
   />
 
   @if (!isLast) {
