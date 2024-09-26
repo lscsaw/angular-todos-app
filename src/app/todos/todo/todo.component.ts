@@ -3,9 +3,6 @@ import { DatePipe } from '@angular/common';
 import { Todo } from '../../application';
 
 @Component({
-  selector: 'app-todo',
-  standalone: true,
-  imports: [DatePipe],
   template: `
     @if (todo(); as todo) {
       <article
@@ -38,6 +35,9 @@ import { Todo } from '../../application';
       </article>
     }
   `,
+  selector: 'app-todo',
+  standalone: true,
+  imports: [DatePipe],
   styleUrl: './todo.component.css',
 })
 export class TodoComponent {
