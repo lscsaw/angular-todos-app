@@ -9,7 +9,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   template: `
     <h1>
       <span>Todos</span>
-      <a routerLink="/todos">Alle Todos</a>
+      <div>
+        <a routerLink="/todos/create">Neu</a>
+        <a routerLink="/todos">Alle Todos</a>
+      </div>
     </h1>
     <router-outlet />
   `,
@@ -17,6 +20,11 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     h1 {
       display: flex;
       justify-content: space-between;
+
+      div {
+        display: flex;
+        gap: 1.5rem;
+      }
     }
   `,
 })

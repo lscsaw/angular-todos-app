@@ -1,0 +1,30 @@
+@if (formChanges()) {}
+
+<h2>
+  @if (isCreating()) {
+    Erstelle ein neues Todo
+  } @else {
+    Bearbeite "{{ todo()!.name }}"
+  }
+</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" />
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea formControlName="description" id="description"></textarea>
+  </div>
+
+  <div>
+    <button type="submit" style="background-color: darkolivegreen">
+      @if (isCreating()) {
+        Erstellen
+      } @else {
+        Speichern
+      }
+    </button>
+  </div>
+</form>

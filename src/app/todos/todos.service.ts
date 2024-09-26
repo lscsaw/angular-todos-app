@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Todo } from '../application';
+import { Todo } from '../app';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { find, map, Observable } from 'rxjs';
 
