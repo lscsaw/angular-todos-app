@@ -5,7 +5,7 @@ import {routes} from './app.routes';
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import {TranslocoHttpLoader} from './transloco-loader';
 import {provideTransloco} from '@jsverse/transloco';
-import {authInterceptor} from './auth/auth-interceptor';
+import {authInterceptor} from './auth/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [

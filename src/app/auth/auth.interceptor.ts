@@ -12,8 +12,7 @@ import {JwtResponse} from '../backend';
 const paths = ['auth/login', 'auth/refresh', 'assets/i18n'];
 
 let isRefreshing = false;
-const nextAccessTokenSubject: BehaviorSubject<string | undefined> =
-  new BehaviorSubject<string | undefined>(undefined);
+const nextAccessTokenSubject = new BehaviorSubject<string | undefined>(undefined);
 
 export function authInterceptor(
   req: HttpRequest<unknown>,
@@ -39,13 +38,6 @@ export function authInterceptor(
         if (error instanceof HttpErrorResponse) {
           switch (error.status) {
             case 401:
-              /* When a session token was cancelled and the user decides to log out he gets an error and can't log out. This checks the url,
-               * clears the cookies and reloads the site. If the Angular app now checks isAuthenticated in the auth guard the
-               * app will route to sign in.
-               */
-              if (req.url.includes('/logout')) {
-                authService.logout();
-              }
 
               if (!isRefreshing) {
                 isRefreshing = true;
