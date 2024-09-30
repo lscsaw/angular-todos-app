@@ -59,7 +59,8 @@
               "buildTarget": "angular-todos:build:production"
             },
             "development": {
-              "buildTarget": "angular-todos:build:development"
+              "buildTarget": "angular-todos:build:development",
+              "proxyConfig": "./src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -84,5 +85,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

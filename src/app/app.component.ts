@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { TranslocoPipe } from '@jsverse/transloco';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {RouterLink, RouterOutlet} from '@angular/router';
+import {TranslocoPipe} from '@jsverse/transloco';
+import {AuthService} from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,15 @@ import { TranslocoPipe } from '@jsverse/transloco';
       <div>
         <a routerLink="/todos/create">{{ 'todos.new' | transloco }}</a>
         <a routerLink="/todos">{{ 'todos.all' | transloco }}</a>
+        @if (authService.isLoggedIn()) {
+          <a href="#logout" (click)="authService.logout()">
+            {{ 'Abmelden' | transloco }}
+          </a>
+        } @else {
+          <a routerLink="/login">
+            {{ 'Login' | transloco }}
+          </a>
+        }
       </div>
     </h1>
     <router-outlet />
@@ -29,4 +39,6 @@ import { TranslocoPipe } from '@jsverse/transloco';
     }
   `,
 })
-export class AppComponent {}
+export class AppComponent {
+  authService = inject(AuthService);
+}
