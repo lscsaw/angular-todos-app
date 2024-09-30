@@ -1,12 +1,8 @@
-import { Component, computed, inject, input, output } from '@angular/core';
-import {
-  NonNullableFormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { Todo } from '../../../app';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { TranslocoPipe } from '@jsverse/transloco';
+import {Component, computed, inject, input, output} from '@angular/core';
+import {NonNullableFormBuilder, ReactiveFormsModule, Validators,} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {TranslocoPipe} from '@jsverse/transloco';
+import {CreateTodoDto, TodoResponse, UpdateTodoDto} from "../../../backend";
 
 @Component({
   selector: 'app-edit-todo-form',
@@ -22,20 +18,18 @@ export class EditTodoFormComponent {
       [Validators.required, Validators.minLength(3), Validators.maxLength(60)],
     ],
     description: [null as string | null],
-    creator: ['Franz'],
   });
 
   formChanges = toSignal(this.form.valueChanges);
 
   todo = input.required({
     alias: 'todo',
-    transform: (it: Todo | undefined) => {
+    transform: (it: TodoResponse | undefined) => {
       this.form.reset();
       if (it) {
         this.form.setValue({
           name: it.name,
           description: it.description ?? null,
-          creator: it.creator.name,
         });
       }
       return it;
@@ -44,21 +38,15 @@ export class EditTodoFormComponent {
 
   isCreating = computed(() => !this.todo());
 
-  create = output<Todo>();
-  update = output<Todo>();
+    create = output<CreateTodoDto>();
+  update = output<UpdateTodoDto>();
 
   submit(): void {
     const raw = this.form.getRawValue();
     if (this.isCreating()) {
       this.create.emit({
         ...raw,
-        id: getRandomInt(10000),
         description: raw.description ?? undefined,
-        createdAt: new Date(),
-        status: 'TODO',
-        creator: {
-          name: raw.creator,
-        },
       });
 
       return;
@@ -66,17 +54,9 @@ export class EditTodoFormComponent {
 
     this.update.emit({
       ...raw,
-      id: this.todo()!.id,
       description: raw.description ?? undefined,
-      createdAt: this.todo()!.createdAt,
       status: this.todo()!.status,
-      creator: {
-        name: raw.creator,
-      },
+      id: this.todo()!.id,
     });
   }
-}
-
-function getRandomInt(max: number): number {
-  return Math.floor(Math.random() * max);
 }

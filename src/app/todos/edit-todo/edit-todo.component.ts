@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map, of, switchMap } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { TodosService } from '../todos.service';
-import { EditTodoFormComponent } from './edit-todo-form/edit-todo-form.component';
-import { Todo } from '../../app';
+import {Component, inject} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {map, of, switchMap} from 'rxjs';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {TodosService} from '../todos.service';
+import {EditTodoFormComponent} from './edit-todo-form/edit-todo-form.component';
+import {CreateTodoDto, UpdateTodoDto} from "../../backend";
 
 @Component({
   selector: 'app-edit-todo',
@@ -38,13 +38,13 @@ export class EditTodoComponent {
     ),
   );
 
-  create($event: Todo) {
-    this.todosService.createTodo($event);
+  create($event: CreateTodoDto) {
+    this.todosService.createTodo($event).subscribe();
     void this.router.navigate(['/']);
   }
 
-  update($event: Todo) {
-    this.todosService.updateTodo($event);
+  update($event: UpdateTodoDto) {
+    this.todosService.updateTodo($event).subscribe();
     void this.router.navigate(['/']);
   }
 }

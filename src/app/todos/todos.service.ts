@@ -1,71 +1,47 @@
-import { Injectable, signal } from '@angular/core';
-import { Todo } from '../app';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { find, map, Observable } from 'rxjs';
+import {inject, Injectable} from '@angular/core';
+import {BehaviorSubject, catchError, of, switchMap, tap} from 'rxjs';
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
+import {CreateTodoDto, TodoResponse, UpdateTodoDto} from "../backend";
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodosService {
-  todos = signal<Todo[]>([
-    {
-      id: 1,
-      name: 'Saugen',
-      creator: {
-        name: 'Franz',
-      },
-      createdAt: new Date(),
-      status: 'TODO',
-    },
-    {
-      id: 2,
-      name: 'Wäsche',
-      description: 'Wichtige Aufgabe',
-      creator: {
-        name: 'Franz',
-      },
-      createdAt: new Date(),
-      status: 'TODO',
-    },
-  ]);
+  private httpClient = inject(HttpClient);
 
-  private todos$ = toObservable(this.todos);
+  private triggerGet = new BehaviorSubject(true);
 
-  getTodo$(id: number): Observable<Todo | undefined> {
-    return this.todos$.pipe(
-      map((todos) => todos.find((todo) => todo.id === id)),
-    );
+  getAll$() {
+    return this.triggerGet.pipe(
+      switchMap(() => this.httpClient.get<TodoResponse[]>(`${environment.apiUrl}/v1/app/todo`))
+    )
   }
 
-  createTodo(todo: Todo) {
-    this.todos.update((todos) => [...todos, todo]);
+  getTodo$(id: number){
+    return this.triggerGet.pipe(
+      switchMap(() => this.httpClient.get<TodoResponse>(`${environment.apiUrl}/v1/app/todo/${id}`)),
+      catchError(() => of(undefined))
+    )
   }
 
-  updateTodo(updatedTodo: Todo) {
-    this.todos.update((todos) => {
-      const index = todos.findIndex((todo) => todo.id === updatedTodo.id);
-      if (index !== -1) {
-        todos[index] = updatedTodo; // Merge existing and updated fields
-      }
-      return [...todos]; // Return the updated list
-    });
+  createTodo(todo: CreateTodoDto) {
+    return this.httpClient.post<TodoResponse>(`${environment.apiUrl}/v1/app/todo`, todo).pipe(
+      tap(() => this.triggerGet.next(true))
+    )
   }
 
-  updateStatus(id: number, status: Todo['status']): void {
-    this.todos.update((todos) => {
-      const index = todos.findIndex((it) => it.id === id);
-      if (index !== -1) {
-        todos[index] = { ...todos[index], status }; // Merge existing and updated fields
-      }
-      return [...todos];
-    });
+  updateTodo(todo: UpdateTodoDto) {
+    return this.httpClient.put<TodoResponse>(`${environment.apiUrl}/v1/app/todo`, todo).pipe(
+      tap(() => this.triggerGet.next(true))
+    )
   }
 
-  removeTodo(id: number): void {
-    this.todos.update((todos) => {
-      const index = todos.findIndex((it) => it.id === id);
-      todos.splice(index, 1);
-      return [...todos];
-    });
+  updateStatus(todo: TodoResponse, status: TodoResponse['status']) {
+    return this.updateTodo({...todo, status: status})
+  }
+
+  removeTodo(id: number) {
+    return this.httpClient.delete(`${environment.apiUrl}/v1/app/todo/${id}`)
   }
 }

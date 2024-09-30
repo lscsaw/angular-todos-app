@@ -1,12 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-} from '@angular/core';
-import { TodoComponent } from './todo/todo.component';
-import { TodosService } from './todos.service';
-import { TranslocoPipe } from '@jsverse/transloco';
+import {ChangeDetectionStrategy, Component, computed, inject,} from '@angular/core';
+import {TodoComponent} from './todo/todo.component';
+import {TodosService} from './todos.service';
+import {TranslocoPipe} from '@jsverse/transloco';
+import {toSignal} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-todos',
@@ -18,7 +14,9 @@ import { TranslocoPipe } from '@jsverse/transloco';
 })
 export class TodosComponent {
   todosService = inject(TodosService);
-  todos = this.todosService.todos;
+  todos = toSignal(this.todosService.getAll$(), {
+    initialValue: []
+  })
 
   todoTodos = computed(() => this.todos().filter((it) => it.status === 'TODO'));
   doneTodos = computed(() => this.todos().filter((it) => it.status === 'DONE'));

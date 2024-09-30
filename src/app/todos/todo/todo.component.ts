@@ -1,8 +1,8 @@
-import { Component, input, output } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { Todo } from '../../app';
-import { RouterLink } from '@angular/router';
-import { TranslocoPipe } from '@jsverse/transloco';
+import {Component, input, output} from '@angular/core';
+import {DatePipe} from '@angular/common';
+import {RouterLink} from '@angular/router';
+import {TranslocoPipe} from '@jsverse/transloco';
+import {TodoResponse} from "../../backend";
 
 @Component({
   template: `
@@ -49,8 +49,8 @@ import { TranslocoPipe } from '@jsverse/transloco';
   styleUrl: './todo.component.css',
 })
 export class TodoComponent {
-  todo = input.required<Todo>();
+  todo = input.required<TodoResponse>();
 
-  updateStatus = output<Todo['status']>();
+  updateStatus = output<TodoResponse['status']>();
   removeTodo = output();
 }

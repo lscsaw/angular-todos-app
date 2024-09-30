@@ -3,7 +3,7 @@
   <app-todo
     [todo]="todo"
     (removeTodo)="todosService.removeTodo(todo.id)"
-    (updateStatus)="todosService.updateStatus(todo.id, $event)"
+    (updateStatus)="todosService.updateStatus(todo, $event).subscribe()"
   />
 
   @if (!isLast) {
@@ -18,7 +18,7 @@
   <app-todo
     [todo]="todo"
     (removeTodo)="todosService.removeTodo(todo.id)"
-    (updateStatus)="todosService.updateStatus(todo.id, $event)"
+    (updateStatus)="todosService.updateStatus(todo, $event).subscribe()"
   />
 
   @if (!isLast) {
