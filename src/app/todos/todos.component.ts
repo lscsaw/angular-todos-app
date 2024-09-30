@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, computed, inject,} from '@angular/co
 import {TodoComponent} from './todo/todo.component';
 import {TodosService} from './todos.service';
 import {TranslocoPipe} from '@jsverse/transloco';
-import {toSignal} from "@angular/core/rxjs-interop";
+import {toSignal} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-todos',
@@ -15,8 +15,8 @@ import {toSignal} from "@angular/core/rxjs-interop";
 export class TodosComponent {
   todosService = inject(TodosService);
   todos = toSignal(this.todosService.getAll$(), {
-    initialValue: []
-  })
+    initialValue: [],
+  });
 
   todoTodos = computed(() => this.todos().filter((it) => it.status === 'TODO'));
   doneTodos = computed(() => this.todos().filter((it) => it.status === 'DONE'));

@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {isAuthenticated} from "./auth/auth.guard";
+import {isAuthenticated} from './auth/auth.guard';
 
 export const routes: Routes = [
   {
@@ -27,7 +27,7 @@ export const routes: Routes = [
           import('./todos/edit-todo/edit-todo.component').then(
             (c) => c.EditTodoComponent,
           ),
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];

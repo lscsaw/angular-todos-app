@@ -12,7 +12,9 @@ import {JwtResponse} from '../backend';
 const paths = ['auth/login', 'auth/refresh', 'assets/i18n'];
 
 let isRefreshing = false;
-const nextAccessTokenSubject = new BehaviorSubject<string | undefined>(undefined);
+const nextAccessTokenSubject = new BehaviorSubject<string | undefined>(
+  undefined,
+);
 
 export function authInterceptor(
   req: HttpRequest<unknown>,
@@ -38,7 +40,6 @@ export function authInterceptor(
         if (error instanceof HttpErrorResponse) {
           switch (error.status) {
             case 401:
-
               if (!isRefreshing) {
                 isRefreshing = true;
                 nextAccessTokenSubject.next(undefined);

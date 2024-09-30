@@ -2,7 +2,7 @@ import {Component, computed, inject, input, output} from '@angular/core';
 import {NonNullableFormBuilder, ReactiveFormsModule, Validators,} from '@angular/forms';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {TranslocoPipe} from '@jsverse/transloco';
-import {CreateTodoDto, TodoResponse, UpdateTodoDto} from "../../../backend";
+import {CreateTodoDto, TodoResponse, UpdateTodoDto} from '../../../backend';
 
 @Component({
   selector: 'app-edit-todo-form',
@@ -38,7 +38,7 @@ export class EditTodoFormComponent {
 
   isCreating = computed(() => !this.todo());
 
-    create = output<CreateTodoDto>();
+  create = output<CreateTodoDto>();
   update = output<UpdateTodoDto>();
 
   submit(): void {
