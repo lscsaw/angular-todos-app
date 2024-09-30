@@ -19,7 +19,11 @@
   </div>
 
   <div>
-    <button type="submit" style="background-color: darkolivegreen">
+    <button
+      type="submit"
+      style="background-color: darkolivegreen"
+      [disabled]="form.invalid"
+    >
       @if (isCreating()) {
         {{ "todos.edit.create" | transloco }}
       } @else {
