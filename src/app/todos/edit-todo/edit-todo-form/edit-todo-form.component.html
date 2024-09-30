@@ -2,28 +2,28 @@
 
 <h2>
   @if (isCreating()) {
-    Erstelle ein neues Todo
+    {{ "todos.edit.add" | transloco }}
   } @else {
-    Bearbeite "{{ todo()!.name }}"
+    {{ "todos.edit.edit" | transloco: { name: todo()!.name } }}
   }
 </h2>
 
 <form [formGroup]="form" (ngSubmit)="submit()">
   <div>
-    <label for="name">Name:</label>
+    <label for="name">{{ "todos.name" | transloco }}:</label>
     <input type="text" id="name" formControlName="name" />
   </div>
   <div>
-    <label for="description">Description:</label>
+    <label for="description">{{ "todos.description" | transloco }}:</label>
     <textarea formControlName="description" id="description"></textarea>
   </div>
 
   <div>
     <button type="submit" style="background-color: darkolivegreen">
       @if (isCreating()) {
-        Erstellen
+        {{ "todos.edit.create" | transloco }}
       } @else {
-        Speichern
+        {{ "todos.edit.save" | transloco }}
       }
     </button>
   </div>

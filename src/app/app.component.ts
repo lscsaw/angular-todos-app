@@ -1,17 +1,18 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, TranslocoPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <h1>
-      <span>Todos</span>
+      <span>{{ 'todos.title' | transloco }}</span>
       <div>
-        <a routerLink="/todos/create">Neu</a>
-        <a routerLink="/todos">Alle Todos</a>
+        <a routerLink="/todos/create">{{ 'todos.new' | transloco }}</a>
+        <a routerLink="/todos">{{ 'todos.all' | transloco }}</a>
       </div>
     </h1>
     <router-outlet />

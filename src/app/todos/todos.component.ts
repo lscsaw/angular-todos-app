@@ -6,11 +6,12 @@ import {
 } from '@angular/core';
 import { TodoComponent } from './todo/todo.component';
 import { TodosService } from './todos.service';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-todos',
   standalone: true,
-  imports: [TodoComponent],
+  imports: [TodoComponent, TranslocoPipe],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

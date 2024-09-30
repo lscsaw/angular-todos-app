@@ -6,11 +6,12 @@ import {
 } from '@angular/forms';
 import { Todo } from '../../../app';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-edit-todo-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslocoPipe],
   templateUrl: './edit-todo-form.component.html',
   styleUrl: './edit-todo-form.component.css',
 })
@@ -29,6 +30,7 @@ export class EditTodoFormComponent {
   todo = input.required({
     alias: 'todo',
     transform: (it: Todo | undefined) => {
+      this.form.reset();
       if (it) {
         this.form.setValue({
           name: it.name,
