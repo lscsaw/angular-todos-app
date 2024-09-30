@@ -1,8 +1,12 @@
-import {inject, Injectable, signal} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {JwtResponse, RefreshJwtWithSessionTokenDto, UserLoginDto,} from '../backend';
-import {tap} from 'rxjs';
+import { inject, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import {
+  JwtResponse,
+  RefreshJwtWithSessionTokenDto,
+  UserLoginDto,
+} from '../backend';
+import { tap } from 'rxjs';
 
 const refreshTokenKey = 'refreshToken';
 const accessTokenKey = 'accessToken';

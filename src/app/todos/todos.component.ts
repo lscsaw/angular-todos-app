@@ -1,8 +1,13 @@
-import {ChangeDetectionStrategy, Component, computed, inject,} from '@angular/core';
-import {TodoComponent} from './todo/todo.component';
-import {TodosService} from './todos.service';
-import {TranslocoPipe} from '@jsverse/transloco';
-import {toSignal} from '@angular/core/rxjs-interop';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
+import { TodoComponent } from './todo/todo.component';
+import { TodosService } from './todos.service';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-todos',

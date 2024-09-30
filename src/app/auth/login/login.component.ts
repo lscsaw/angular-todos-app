@@ -1,8 +1,12 @@
-import {Component, inject, signal} from '@angular/core';
-import {NonNullableFormBuilder, ReactiveFormsModule, Validators,} from '@angular/forms';
-import {toSignal} from '@angular/core/rxjs-interop';
-import {AuthService} from '../auth.service';
-import {Router} from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import {
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',

@@ -1,8 +1,8 @@
-import {inject, Injectable} from '@angular/core';
-import {BehaviorSubject, catchError, of, switchMap, tap} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {CreateTodoDto, TodoResponse, UpdateTodoDto} from '../backend';
+import { inject, Injectable } from '@angular/core';
+import { BehaviorSubject, catchError, of, switchMap, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { CreateTodoDto, TodoResponse, UpdateTodoDto } from '../backend';
 
 @Injectable({
   providedIn: 'root',

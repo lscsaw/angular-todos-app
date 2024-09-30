@@ -1,10 +1,10 @@
-import {Component, inject} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {map, of, switchMap} from 'rxjs';
-import {toSignal} from '@angular/core/rxjs-interop';
-import {TodosService} from '../todos.service';
-import {EditTodoFormComponent} from './edit-todo-form/edit-todo-form.component';
-import {CreateTodoDto, UpdateTodoDto} from '../../backend';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, of, switchMap } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TodosService } from '../todos.service';
+import { EditTodoFormComponent } from './edit-todo-form/edit-todo-form.component';
+import { CreateTodoDto, UpdateTodoDto } from '../../backend';
 
 @Component({
   selector: 'app-edit-todo',

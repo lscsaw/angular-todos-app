@@ -1,10 +1,23 @@
-import {HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest,} from '@angular/common/http';
-import {inject} from '@angular/core';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandlerFn,
+  HttpRequest,
+} from '@angular/common/http';
+import { inject } from '@angular/core';
 
-import {BehaviorSubject, catchError, filter, Observable, switchMap, take, throwError,} from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  filter,
+  Observable,
+  switchMap,
+  take,
+  throwError,
+} from 'rxjs';
 
-import {AuthService} from './auth.service';
-import {JwtResponse} from '../backend';
+import { AuthService } from './auth.service';
+import { JwtResponse } from '../backend';
 
 /**
  * Don't intercept this requests

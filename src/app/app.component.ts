@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
-import {TranslocoPipe} from '@jsverse/transloco';
-import {AuthService} from './auth/auth.service';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
