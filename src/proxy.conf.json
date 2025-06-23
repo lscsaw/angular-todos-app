@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://mazda-test.dafnik.me",
+    "target": "https://springer-workshop.dafnik.me",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
