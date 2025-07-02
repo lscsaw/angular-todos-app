@@ -21,6 +21,7 @@ jobs:
     env:
       # TAG_DYNAMIC: main-1234567
       TAG_DYNAMIC: ${{ github.ref_name }}-${{ github.run_id }}
+      IMAGE_NAME: angular-todos-app
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,7 +30,11 @@ jobs:
         run: |
           docker build . \
           --file Dockerfile \
-          --tag angular-todos-app:$TAG_DYNAMIC \
-          --tag angular-todos-app:latest
+          --tag $IMAGE_NAME:$TAG_DYNAMIC \
+          --tag $IMAGE_NAME:latest
 
-      # - name: wohin docker image
+      - name: Push image to docker hub
+        run: | 
+          docker push $IMAGE_NAME:$TAG_DYNAMIC
+          docker push $IMAGE_NAME:latest
+      
