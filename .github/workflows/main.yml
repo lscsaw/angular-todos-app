@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-    
+
       - name: Build docker image
         run: |
           docker build . \
@@ -32,5 +32,4 @@ jobs:
           --tag angular-todos-app:$TAG_DYNAMIC \
           --tag angular-todos-app:latest
 
-
-      # - name: wohin docker image  
+      # - name: wohin docker image
