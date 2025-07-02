@@ -34,7 +34,6 @@ jobs:
           --tag $IMAGE_NAME:latest
 
       - name: Push image to docker hub
-        run: | 
+        run: |
           docker push $IMAGE_NAME:$TAG_DYNAMIC
           docker push $IMAGE_NAME:latest
-      
